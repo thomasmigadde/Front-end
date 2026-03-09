@@ -1,0 +1,81 @@
+<script>
+    // Base class: Person
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  introduce() {
+    return `Hi, I'm ${this.name}, and I'm ${this.age} years old.`;
+  }
+}
+
+// Student class
+class Student extends Person {
+  constructor(name, age, studentId, course) {
+    super(name, age);
+    this.studentId = studentId;
+    this.course = course;
+  }
+
+  study() {
+    return `${this.name} is studying ${this.course}.`;
+  }
+}
+
+// Lecturer class
+class Lecturer extends Person {
+  constructor(name, age, subject) {
+    super(name, age);
+    this.subject = subject;
+  }
+
+  teach() {
+    return `${this.name} is teaching ${this.subject}.`;
+  }
+}
+
+// University class
+class University {
+  constructor(name) {
+    this.name = name;
+    this.students = [];
+    this.lecturers = [];
+  }
+
+  addStudent(student) {
+    this.students.push(student);
+  }
+
+  addLecturer(lecturer) {
+    this.lecturers.push(lecturer);
+  }
+
+  listMembers() {
+    console.log(`University: ${this.name}`);
+    console.log("Students:");
+    this.students.forEach(s => console.log(`- ${s.name} (${s.course})`));
+    console.log("Lecturers:");
+    this.lecturers.forEach(l => console.log(`- ${l.name} (${l.subject})`));
+  }
+}
+
+// Example usage
+const uni = new University("Makerere University");
+
+const student1 = new Student("Alice", 20, "S001", "Computer Science");
+const student2 = new Student("Brian", 22, "S002", "Engineering");
+
+const lecturer1 = new Lecturer("Dr. Okello", 45, "Mathematics");
+
+uni.addStudent(student1);
+uni.addStudent(student2);
+uni.addLecturer(lecturer1);
+
+uni.listMembers();
+
+console.log(student1.study());
+console.log(lecturer1.teach());
+ 
+</script>
